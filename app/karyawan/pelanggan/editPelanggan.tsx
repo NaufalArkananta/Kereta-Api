@@ -12,7 +12,6 @@ type props = {
     pelanggan: UserType
 }
 const EditPelanggan = (myProp: props) => {
-    const [username, setUsername] = useState<string>("")
     const [nik, setNik] = useState<string>("")
     const [name, setName] = useState<string>("")
     const [address, setAddress] = useState<string>("")
@@ -22,7 +21,6 @@ const EditPelanggan = (myProp: props) => {
 
     const openModal = () => {
         setShow(true)
-        setUsername(myProp.pelanggan.user_details.username)
         setNik(myProp.pelanggan.nik)
         setName(myProp.pelanggan.name)
         setAddress(myProp.pelanggan.address)
@@ -39,7 +37,6 @@ const EditPelanggan = (myProp: props) => {
             const TOKEN = getCookie(`token`);
             const url = `/customer/${myProp.pelanggan.id}`;
             const requestData = {
-                username,
                 nik,
                 name,
                 address,
@@ -93,16 +90,6 @@ const EditPelanggan = (myProp: props) => {
                     </div>
                     {/* modal body */}
                     <div className="w-full p-3">
-                        <div className="my-2 border rounded-md p-3">
-                            <small className="text-sm font-semibold text-sky-600">
-                                Username
-                            </small>
-                            <input type="text" 
-                            id={`username-${myProp.pelanggan.id}`} 
-                            value={username}
-                            onChange={e => setUsername(e.target.value)}
-                            className="p-1 outline-none focus:border-b-sky-600 focus:border-b"/>
-                        </div>
                         <div className="my-2 border rounded-md p-3">
                             <small className="text-sm font-semibold text-sky-600">
                                 Nik

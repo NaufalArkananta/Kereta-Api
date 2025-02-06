@@ -12,7 +12,6 @@ type props = {
     admin: UserType
 }
 const EditAdmin = (myProp: props) => {
-    const [username, setUsername] = useState<string>("")
     const [nik, setNik] = useState<string>("")
     const [name, setName] = useState<string>("")
     const [address, setAddress] = useState<string>("")
@@ -22,7 +21,6 @@ const EditAdmin = (myProp: props) => {
 
     const openModal = () => {
         setShow(true)
-        setUsername(myProp.admin.user_details.username)
         setNik(myProp.admin.nik)
         setName(myProp.admin.name)
         setAddress(myProp.admin.address)
@@ -39,7 +37,6 @@ const EditAdmin = (myProp: props) => {
             const TOKEN = getCookie(`token`);
             const url = `/employee/${myProp.admin.id}`;
             const requestData = {
-                username,
                 nik,
                 name,
                 address,
@@ -93,16 +90,6 @@ const EditAdmin = (myProp: props) => {
                     </div>
                     {/* modal body */}
                     <div className="w-full p-3">
-                        <div className="my-2 border rounded-md p-3">
-                            <small className="text-sm font-semibold text-sky-600">
-                                Username
-                            </small>
-                            <input type="text" 
-                            id={`username-${myProp.admin.id}`} 
-                            value={username}
-                            onChange={e => setUsername(e.target.value)}
-                            className="p-1 outline-none focus:border-b-sky-600 focus:border-b"/>
-                        </div>
                         <div className="my-2 border rounded-md p-3">
                             <small className="text-sm font-semibold text-sky-600">
                                 Nik
