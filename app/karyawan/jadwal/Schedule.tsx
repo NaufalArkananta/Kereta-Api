@@ -1,33 +1,9 @@
-import { axiosInstance } from "@/helper/api"
-import { KeretaType, ScheduleType } from "../types"
+import { ScheduleType } from "../types"
 import EditSchedule from "./editSchedule"
-import { getServerCookie } from "@/helper/server-cookie"
 import DropSchedule from "./dropSchedule"
 
 type Props = {
     item: ScheduleType
-}
-
-const getKereta = async (): Promise<KeretaType[]> => {
-    try {
-        /** get token from cookie */
-        const TOKEN = await getServerCookie(`token`)
-        const url = `/train`
-        /** hit endpoint */
-        const response: any = await axiosInstance.get(url, {
-            headers:{
-                authorization: `Bearer ${TOKEN}`
-            }
-        })
-
-        if (response.data.success == true) {
-            return response.data.data
-        }
-        return[]
-    } catch (error) {
-        console.log(error);
-        return[]
-    }
 }
 
 const showType = (date: string) => {
@@ -40,7 +16,6 @@ const showType = (date: string) => {
     })
 }
 const Schedule = async (myProps: Props) => {
-    const dataKereta = await getKereta()
     return(
         <div className="flex flex-wrap w-full border rounded-md shadow-md my-2">
             <div className="w-full md:w-3/12 p-3 flex flex-col">
@@ -78,7 +53,7 @@ const Schedule = async (myProps: Props) => {
                     Opsi
                 </small>
                 <div className="flex gap-2 items-center">
-                    <EditSchedule item={myProps.item} trains={dataKereta}/>
+                    <EditSchedule item={myProps.item} />
                     <DropSchedule schedule={myProps.item} />    
                 </div>
             </div>

@@ -7,10 +7,9 @@ import { useRouter } from "next/navigation"
 import { FormEvent, useState } from "react"
 import DatePicker from "react-datepicker"
 import { toast, ToastContainer } from "react-toastify"
-import { KeretaType, ScheduleType } from "../types"
+import { ScheduleType } from "../types"
 
 type props = {
-    trains: KeretaType[]
     item: ScheduleType
 }
 
