@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { verifyKaryawan } from "./helper/authorization";
+import { verifyKaryawan, verifyPelanggan } from "./helper/authorization";
 
 export const middleware = async (request: NextRequest) => {
     if (request.nextUrl.pathname.startsWith(`/karyawan`)) {
@@ -20,6 +20,25 @@ export const middleware = async (request: NextRequest) => {
         if(!isVerifiedToken) return NextResponse.redirect(redirectLogin)
         return NextResponse.next()
     }
+    
+    if (request.nextUrl.pathname.startsWith(`/pelanggan`)) {
+        // jika url diawali dengan /pelanggan
+
+        // ambil data token dari cookie
+        const token = request.cookies.get(`token`)?.value
+
+        // prepare redirect to login page
+        const redirectLogin = request.nextUrl.clone()
+        redirectLogin.pathname = "/"
+
+        if(typeof token === undefined) {
+            return NextResponse.redirect(redirectLogin)
+        }
+
+        const isVerifiedToken = await verifyPelanggan(token ?? "")
+        if(!isVerifiedToken) return NextResponse.redirect(redirectLogin)
+        return NextResponse.next()
+    }
 
     return NextResponse.next()
 }
@@ -27,6 +46,7 @@ export const middleware = async (request: NextRequest) => {
 // menentukan route mana saja yang akan memberlakukan proses middleware
 export const config = {
     matcher: [
-        "/karyawan/:path*"
+        "/karyawan/:path*",
+        "/pelanggan/:path*",
     ]
 }

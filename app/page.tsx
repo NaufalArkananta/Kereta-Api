@@ -47,7 +47,12 @@ const LoginPage = () => {
           setTimeout(
             () => router.replace(`/karyawan/kereta`),
             1000
-        )
+          )
+        } else {
+          setTimeout(
+            () => router.replace(`/pelanggan/jadwal`),
+            1000
+          )
         }
       }
     } catch (error) {

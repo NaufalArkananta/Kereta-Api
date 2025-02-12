@@ -1,6 +1,5 @@
-import { ScheduleType } from "../types"
-import EditSchedule from "./editSchedule"
-import DropSchedule from "./dropSchedule"
+import { ScheduleType } from "@/app/karyawan/types"
+import Link from "next/link"
 
 type Props = {
     item: ScheduleType
@@ -53,8 +52,11 @@ const Schedule = async (myProps: Props) => {
                     Opsi
                 </small>
                 <div className="flex gap-2 items-center">
-                    <EditSchedule item={myProps.item} />
-                    <DropSchedule schedule={myProps.item} />    
+                    <Link href={`/pelanggan/pesan/${myProps.item.id}`}>
+                        <button className="px-4 py-2 rounded-md bg-orange-500 hover:bg-orange-600 text-white">
+                            Pesan
+                        </button>   
+                    </Link>
                 </div>
             </div>
         </div>
