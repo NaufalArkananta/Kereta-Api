@@ -25,6 +25,7 @@ export interface KursiType {
     wagon_id: number
     createdAt: string
     updatedAt: string
+    used?: boolean
 }
 
 export interface UserType {

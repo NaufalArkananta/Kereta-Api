@@ -5,7 +5,10 @@ import { ScheduleType } from "@/app/karyawan/types"
 import Schedule from "./Schedule"
 
 type props = {
-    queryParam: Record<string, string | string[] | undefined>
+    searchParams: {
+        departured_location?: string,
+        arrived_location?: string 
+    }
 }
 
 const getJadwal = async (
@@ -28,8 +31,8 @@ const getJadwal = async (
 }
 
 const JadwalPage = async (myProp: props) => {
-    const departured_location = myProp.queryParam?.departured_location?.toString() || ""
-    const arrived_location = myProp.queryParam?.arrived_location?.toString() || ""
+    const departured_location = (await myProp.searchParams).departured_location?.toString() || ""
+    const arrived_location = (await myProp.searchParams).arrived_location?.toString() || ""
     const dataJadwal = await getJadwal(departured_location, arrived_location)
     return (
         <div className="w-full p-3">

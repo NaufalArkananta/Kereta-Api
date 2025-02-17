@@ -52,7 +52,7 @@ const Schedule = async (myProps: Props) => {
                     Opsi
                 </small>
                 <div className="flex gap-2 items-center">
-                    <Link href={`/pelanggan/pesan/${myProps.item.id}`}>
+                    <Link href={`/pelanggan/jadwal/${myProps.item.id}`}>
                         <button className="px-4 py-2 rounded-md bg-orange-500 hover:bg-orange-600 text-white">
                             Pesan
                         </button>   
