@@ -5,13 +5,14 @@ type Props = {
     item: ScheduleType
 }
 
-const showType = (date: string) => {
+export const showTime = (date: string) => {
     const currentDate = new Date(date)
-    return currentDate
-    .toLocaleTimeString(`id-ID`, {
-        year: "numeric", 
-        month: "long",
-        day: "2-digit"
+    return currentDate.toLocaleTimeString('id-ID', {
+        year: 'numeric',
+        month: 'long',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
     })
 }
 const Schedule = async (myProps: Props) => {
@@ -25,7 +26,7 @@ const Schedule = async (myProps: Props) => {
                 <small className="text-xs font-semibold text-sky-700">
                     Waktu Keberangkatan
                 </small>
-                <strong>{showType(myProps.item.departured_time)}</strong>
+                <strong>{showTime(myProps.item.departured_time)}</strong>
             </div>
             <div className="w-full md:w-3/12 p-3 flex flex-col">
                 <small className="text-xs font-semibold text-sky-700">
@@ -35,7 +36,7 @@ const Schedule = async (myProps: Props) => {
                 <small className="text-xs font-semibold text-sky-700">
                     Waktu Kedatangan
                 </small>
-                <strong>{showType(myProps.item.arrived_time)}</strong>
+                <strong>{showTime(myProps.item.arrived_time)}</strong>
             </div>
             <div className="w-full md:w-4/12 p-3  flex flex-col">
                 <small className="text-xs font-semibold text-sky-700">
