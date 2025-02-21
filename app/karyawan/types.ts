@@ -64,7 +64,6 @@ export interface HistoryType {
     purchase_date: string; 
     customer_id: number;
     schedule_id: number;
-    app_user_token: string;
     createdAt: string; 
     updatedAt: string;
     purchases_details: PurchaseDetail[]
