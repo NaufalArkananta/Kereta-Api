@@ -29,6 +29,7 @@ const DropAdmin = (myProp: props) => {
             const TOKEN = getCookie(`token`);
             const url = `/employee/${myProp.admin.id}`;
             // hit endpoint to add kereta
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             const response: any = await axiosInstance.delete(url, {
                 headers: {
                     authorization: `Bearer ${TOKEN}`

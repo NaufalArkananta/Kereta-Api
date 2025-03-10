@@ -45,6 +45,7 @@ const AddAdmin = () => {
                 phone
             }
             // hit endpoint to add kereta
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             const response: any = await axiosInstance.post(url, requestData, {
                 headers: {
                     authorization: `Bearer ${TOKEN}`
